@@ -18,22 +18,21 @@ const partTime = 4;
 const fullTime = 8;
 const wagePerHour = 20;
 
-switch(workingHours){
+function getWorkingHours(workingHours){
+    switch(workingHours){
 
-    case isPartTime:
-        workingHours = partTime;
-        break;
+        case isPartTime:
+            return partTime;
 
-    case isFullTime:
-        workingHours = fullTime;
-        break;
+        case isFullTime:
+            return fullTime;
 
-    default :
-        workingHours = 0;
-        break;
+        default :
+            return 0;
 
+    }
 }
 
-let wage = wagePerHour*workingHours;
+let wage = wagePerHour*getWorkingHours(workingHours);
 
 console.log("Daily wage generated for employee is ",wage);
