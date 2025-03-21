@@ -1,4 +1,4 @@
-//UC-1
+//UC-1 checking 
 const present = 1;
 
 let isPresent = Math.floor(Math.random()*10)%2;
@@ -99,3 +99,69 @@ while(totalEmpHrs <= maxWorkingHrs && numberOfTotalDays < maxWorkingDays){
 
 empWage = totalEmpHrs*wagePerHour;
 console.log("Total working days are : "+numberOfTotalDays+", Total working hours are : "+totalEmpHrs+", Wage of Employee is : "+empWage);
+
+//UC-7A calculate total wage using array forEach traversal  
+
+let totalEmpWage = 0;
+
+function sum(currentWage){
+    totalEmpWage += currentWage;
+}
+
+dailyWages.forEach(sum);
+
+console.log("Total working days are : "+numberOfTotalDays+", Total working hours are : "+totalEmpHrs+", Wage of Employee is : "+totalEmpWage);
+
+//UC-7B Mapping Day with Daily Wage
+
+let dayCount = 0;
+
+function mapDayWithWage(wage){
+    dayCount++;
+    return "(Day : "+dayCount+", Wage : "+wage+") ";
+}
+
+let mappedWages = dailyWages.map(mapDayWithWage);
+
+console.log("Mapped array is => "+mappedWages);
+
+//UC-7C Days with Full Wage
+
+function fullWage(wage){
+    return wage.includes("160");
+}
+
+let fullWageDays = mappedWages.filter(fullWage);
+
+console.log("Full Wage Day array is => "+fullWageDays);
+
+//UC-7D finding first day on which full wage was earned
+
+console.log(fullWageDays.find((wage) => wage.includes("160")));
+
+//UC-7E checking if every wage in fullWageDays have full wage or not
+
+function isFullWage(wage){
+    return wage.includes("160");
+}
+
+console.log("Every wage in fullWageDays array has full wage ? : "+fullWageDays.every(isFullWage));
+
+//UC-7F checking if any wage is there as part time wage
+
+function isPartWage(wage){
+    return wage.includes("80");
+}
+
+console.log("Is there any wage as Part time wage in the wage array ? :"+mappedWages.some(isPartWage));
+
+//UC-7G finding total number of days employee worked
+
+function totalDaysWorked(numOfDays, wage){
+    if(wage > 0)
+        return numOfDays+1;
+    else
+        return numOfDays;
+}
+
+console.log("Number of days worked by the employee are "+dailyWages.reduce(totalDaysWorked,0));
