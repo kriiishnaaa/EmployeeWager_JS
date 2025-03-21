@@ -165,3 +165,31 @@ function totalDaysWorked(numOfDays, wage){
 }
 
 console.log("Number of days worked by the employee are "+dailyWages.reduce(totalDaysWorked,0));
+
+
+//UC-8 storing the day and daily wage along with the total wage in map
+
+dailyWages = new Array();
+let empDailyWageMap = new Map();
+
+totalEmpHrs = 0;
+numberOfTotalDays = 0;
+
+while(totalEmpHrs <= maxWorkingHrs && numberOfTotalDays < maxWorkingDays){
+    
+    empCheck = Math.floor(Math.random()*10)%3;
+    empHrs = getWorkingHours(empCheck);
+
+    totalEmpHrs += empHrs;
+
+    dailyWages.push(getWage(empHrs));
+
+    numberOfTotalDays++;
+
+    empDailyWageMap.set(numberOfTotalDays, getWage(empHrs));
+
+}
+
+console.log(empDailyWageMap);
+
+console.log("Emp wage map total wage : "+Array.from(empDailyWageMap.values()).reduce((totalWage, wage)=> totalWage+wage, 0));
