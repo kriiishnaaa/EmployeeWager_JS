@@ -230,7 +230,7 @@ let nonWorkingDays = new Array();
 let partWorkingDays = new Array();
 let fullWorkingDays = new Array();
 
-nonWorkingDays = empDailyHrsMap.forEach((value, key)=>{
+empDailyHrsMap.forEach((value, key)=>{
     if(value == 0)
         nonWorkingDays.push(key);
     if(value == 4)
@@ -270,3 +270,34 @@ while(totalEmpHrs <= maxWorkingHrs && numberOfTotalDays < maxWorkingDays){
 }
 
 console.log("Daily hours worked and wage earned : "+empDailyHrsAndWageArr);
+
+//UC-11 Applying Object operations using Arrow Functions
+
+totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal, 0);
+totalSalary = Array.from(empDailyWageMap.values()).reduce(findTotal, 0);
+
+console.log("Total working hours are : "+totalHours);
+console.log("Total wage of employee is : "+totalSalary);
+
+fullWorkingDays = [];
+empDailyHrsMap.forEach((value, key)=>{
+    if(value == 8)
+        fullWorkingDays.push(key);
+});
+
+partWorkingDays = [];
+empDailyHrsAndWageArr.forEach((obj)=>{
+    if(obj.dailyHours == 4)
+        partWorkingDays.push(obj.toString());
+});
+
+nonWorkingDays = [];
+
+empDailyHrsMap.forEach((value, key)=>{
+    if(value == 0)
+        nonWorkingDays.push(key);
+})
+
+console.log("Full time working days are : "+fullWorkingDays);
+console.log("Part time working days are : "+partWorkingDays);
+console.log("No time working days are : "+nonWorkingDays);
