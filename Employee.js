@@ -242,3 +242,31 @@ nonWorkingDays = empDailyHrsMap.forEach((value, key)=>{
 console.log("Full working days are : "+fullWorkingDays);
 console.log("Part working days are : "+partWorkingDays);
 console.log("No working days are : "+nonWorkingDays);
+
+//UC-10 Storing Object of day, hours and wage inside an array
+
+totalEmpHrs = 0;
+numberOfTotalDays = 0;
+let empDailyHrsAndWageArr = new Array();
+
+while(totalEmpHrs <= maxWorkingHrs && numberOfTotalDays < maxWorkingDays){
+    
+    empCheck = Math.floor(Math.random()*10)%3;
+    empHrs = getWorkingHours(empCheck);
+
+    totalEmpHrs += empHrs;
+    numberOfTotalDays++;
+
+    empDailyHrsAndWageArr.push({
+        dayNum : numberOfTotalDays,
+        dailyHours : empHrs,
+        dailyWage : getWage(empHrs),
+        toString(){
+            return '\nDay'+this.dayNum+" => Working Hours is "+this.dailyHours+" And Wage Earned = "+this.dailyWage
+        }
+    });
+
+   
+}
+
+console.log("Daily hours worked and wage earned : "+empDailyHrsAndWageArr);
